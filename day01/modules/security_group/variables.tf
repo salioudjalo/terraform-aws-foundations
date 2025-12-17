@@ -21,6 +21,7 @@ variable "inbound_rules_ipv4" {
     description = string
 
   }))
+  default = {}
 
 }
 
@@ -35,6 +36,7 @@ variable "inbound_rules_ipv6" {
     description = string
 
   }))
+  default = {}
 
 }
 
@@ -49,6 +51,7 @@ variable "inbound_rules_sg" {
     description                  = string
 
   }))
+  default = {}
 
 }
 
@@ -61,6 +64,7 @@ variable "outbound_rules_ipv4" {
     to_port     = number
     description = string
   }))
+  default = {}
 
 }
 
@@ -73,6 +77,7 @@ variable "outbound_rules_ipv6" {
     to_port     = number
     description = string
   }))
+  default = {}
 
 }
 
@@ -85,9 +90,11 @@ variable "outbound_rules_sg" {
     to_port                      = number
     description                  = string
   }))
+  default = {}
 
 }
 
 variable "tags" {
-  type = map(any)
+  type = map(string)
+  default = {}
 }
