@@ -7,7 +7,7 @@ variable "instance_type" {
 }
 
 variable "subnet_id" {
-  type = string
+  type    = string
   default = null
 }
 
@@ -27,4 +27,9 @@ variable "key_name" {
 
 variable "associate_public_ip" {
   type = bool
+}
+
+variable "user_data" {
+  type    = string
+  default = null
 }

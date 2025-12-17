@@ -9,12 +9,12 @@ variable "vpc_id" {
 }
 
 variable "subnet_id" {
-  type = string
+  type    = string
   default = null
 }
 
 variable "ssh_key_name" {
-  type = string
+  type    = string
   default = null
 }
 

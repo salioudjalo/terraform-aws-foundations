@@ -52,6 +52,14 @@ module "ec2" {
   vpc_security_group_ids = [module.security_group.vpc_security_group_id]
   key_name               = var.ssh_key_name
   associate_public_ip    = false
+  user_data              = <<-EOF
+    #!/bin/bash
+    yum update -y
+    dnf install -y httpd
+    systemctl start httpd
+    systemctl enable httpd
+    echo "<h1>Hello from Terraform Day 3</h1>" > /var/www/html/index.html
+  EOF
 
   tags = {
     Env  = "Dev"
