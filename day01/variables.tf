@@ -1,6 +1,15 @@
+variable "environment" {
+  type        = string
+  description = "Variable to set the environment : prod, dev"
+}
+
 variable "region" {
-  type    = string
-  default = "us-east-1"
+  type = string
+}
+
+variable "instance_type" {
+  type        = string
+  description = "To set the instance type of the EC2 instance"
 }
 
 variable "vpc_id" {
@@ -9,8 +18,7 @@ variable "vpc_id" {
 }
 
 variable "subnet_id" {
-  type    = string
-  default = null
+  type = string
 }
 
 variable "ssh_key_name" {

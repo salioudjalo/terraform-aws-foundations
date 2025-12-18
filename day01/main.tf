@@ -1,7 +1,7 @@
 module "security_group" {
   source = "./modules/security_group"
 
-  security_group_name        = "SG Day 2"
+  security_group_name        = "${var.environment}-sg-day2"
   security_group_description = "Security group created with Terraform"
   vpc_id                     = var.vpc_id
 
@@ -34,8 +34,8 @@ module "security_group" {
   }
 
   tags = {
-    Name = "Day01",
-    Env  = "Dev",
+    Name = "Day02"
+    Env  = var.environment
     Team = "SD"
   }
 
@@ -46,8 +46,8 @@ module "ec2" {
   source = "./modules/ec2"
 
   // INPUT
-  instance_name          = "Day01 Ec2"
-  instance_type          = "t3.micro"
+  instance_name          = "${var.environment}-ec2-day2"
+  instance_type          = var.instance_type
   subnet_id              = var.subnet_id
   vpc_security_group_ids = [module.security_group.vpc_security_group_id]
   key_name               = var.ssh_key_name
@@ -62,7 +62,7 @@ module "ec2" {
   EOF
 
   tags = {
-    Env  = "Dev"
+    Env  = var.environment
     Team = "SD"
   }
 
