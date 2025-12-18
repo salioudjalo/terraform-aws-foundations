@@ -3,6 +3,13 @@ resource "aws_security_group" "sg" {
   description = var.security_group_description
   vpc_id      = var.vpc_id
   tags        = var.tags
+
+  /*
+  lifecycle {
+    prevent_destroy = true
+  }
+ */
+
 }
 
 // inbound rules

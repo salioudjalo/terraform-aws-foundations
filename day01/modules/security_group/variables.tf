@@ -95,6 +95,6 @@ variable "outbound_rules_sg" {
 }
 
 variable "tags" {
-  type = map(string)
+  type    = map(string)
   default = {}
 }

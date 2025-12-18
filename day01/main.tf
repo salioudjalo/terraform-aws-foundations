@@ -66,6 +66,4 @@ module "ec2" {
     Team = "SD"
   }
 
-
-
 }
