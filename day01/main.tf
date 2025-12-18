@@ -3,7 +3,7 @@ module "security_group" {
 
   security_group_name        = "${var.environment}-sg-day2"
   security_group_description = "Security group created with Terraform"
-  vpc_id                     = var.vpc_id
+  vpc_id                     = data.aws_vpc.fetch_vpc.id
 
   inbound_rules_ipv4 = {
     ssh = {
@@ -48,18 +48,15 @@ module "ec2" {
   // INPUT
   instance_name          = "${var.environment}-ec2-day2"
   instance_type          = var.instance_type
-  subnet_id              = var.subnet_id
+  subnet_id              = local.first_subnet_id
   vpc_security_group_ids = [module.security_group.vpc_security_group_id]
   key_name               = var.ssh_key_name
   associate_public_ip    = false
-  user_data              = <<-EOF
-    #!/bin/bash
-    yum update -y
-    dnf install -y httpd
-    systemctl start httpd
-    systemctl enable httpd
-    echo "<h1>Hello from Terraform Day 3</h1>" > /var/www/html/index.html
-  EOF
+  user_data              = file("./modules/ec2/user_data.sh")
+
+  // ${path.module} - This is best practice
+  // Ensures the file is found relative to the module
+  // Works no matter where the module is called from
 
   tags = {
     Env  = var.environment

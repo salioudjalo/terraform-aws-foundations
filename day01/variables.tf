@@ -12,15 +12,6 @@ variable "instance_type" {
   description = "To set the instance type of the EC2 instance"
 }
 
-variable "vpc_id" {
-  type    = string
-  default = "vpc-0d358cf72278341dd"
-}
-
-variable "subnet_id" {
-  type = string
-}
-
 variable "ssh_key_name" {
   type    = string
   default = null

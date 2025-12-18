@@ -8,3 +8,11 @@ output "ec2_private_ip" {
 output "ec2_public_ip" {
   value = module.ec2.public_ip
 }
+
+output "list_subnet" {
+  value = data.aws_subnets.list_subnet.ids
+}
+
+output "list_security_group" {
+  value = data.aws_security_group.default_sg.arn
+}
