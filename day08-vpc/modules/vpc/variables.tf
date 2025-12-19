@@ -10,6 +10,6 @@ variable "environment" {
   type = string
 }
 
-variable "list_az" {
+variable "availability_zones" {
   type = list(string)
 }
