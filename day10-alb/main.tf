@@ -11,13 +11,24 @@ resource "aws_security_group" "alb_sg" {
   }
 }
 
-# igress rule
+# igress rules
+
+// Internet → ALB (80)
 resource "aws_vpc_security_group_ingress_rule" "allow_http" {
   security_group_id = aws_security_group.alb_sg.id
   cidr_ipv4         = "0.0.0.0/0"
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
+}
+
+// ALB SG → Private EC2 SG (80)
+resource "aws_vpc_security_group_ingress_rule" "from_alb_sg" {
+  security_group_id            = data.terraform_remote_state.compute.outputs.app_ec2_sg_id
+  referenced_security_group_id = aws_security_group.alb_sg.id
+  from_port                    = 80
+  to_port                      = 80
+  ip_protocol                  = "tcp"
 }
 
 # egress rule
