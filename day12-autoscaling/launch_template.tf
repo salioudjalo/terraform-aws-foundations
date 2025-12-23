@@ -1,7 +1,7 @@
 # Provides an EC2 launch template resource. Can be used to create instances or auto scaling groups.
 resource "aws_launch_template" "ec2_template" {
 
-  # Required pieces : *AMI, *Instance type, *Security Group, Key pair, *User data, IAM  
+  # Required pieces : *AMI, *Instance type, *Security Group, *Key pair, *User data, IAM  
   name                   = "day12-lt"
   image_id               = data.aws_ami.amazon_linux.image_id
   instance_type          = "t3.micro"
