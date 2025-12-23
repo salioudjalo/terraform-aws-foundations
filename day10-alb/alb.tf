@@ -41,8 +41,14 @@ resource "aws_lb_listener" "front_end" {
   port              = "80"
   protocol          = "HTTP"
 
+  // HTTP → HTTPS Redirect
   default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.app_tg.arn
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
 }
