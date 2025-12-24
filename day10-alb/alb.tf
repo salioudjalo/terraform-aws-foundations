@@ -1,5 +1,4 @@
 # instance Target Group
-
 resource "aws_lb_target_group" "app_tg" {
   name        = "day10-app-tg"
   port        = 80

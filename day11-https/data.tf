@@ -1,5 +1,4 @@
 # fetch remote state from S3 Bucket (day10)
-
 data "terraform_remote_state" "alb" {
   backend = "s3"
 
