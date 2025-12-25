@@ -9,6 +9,18 @@ data "aws_ami" "amazon_linux" {
 
 }
 
+# Data Source for Assume Role Policy
+data "aws_iam_policy_document" "instance_assume_role_policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+  }
+}
+
 # fetch remote state from S3 Bucket (day08)
 data "terraform_remote_state" "vpc" {
   backend = "s3"

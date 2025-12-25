@@ -4,6 +4,8 @@
 
 // SSH from my laptop → Bastion EC2 → Private EC2
 
+// no longer require Bastion Host
+/*
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion-sg"
   description = "allow SSH only from my IP and all outbound traffic"
@@ -15,6 +17,7 @@ resource "aws_security_group" "bastion_sg" {
     Project = "day09-secure-workloads"
   }
 }
+*/
 
 resource "aws_security_group" "private_ec2_sg" {
   name   = "private_ec2_sg"
@@ -25,6 +28,9 @@ resource "aws_security_group" "private_ec2_sg" {
     Project = "day09-secure-workloads"
   }
 }
+
+// No need bastion sg now
+/*
 
 # Otherwise, bastion is unreachable
 # Bastion ingress = CIDR (humans)
@@ -53,6 +59,9 @@ resource "aws_vpc_security_group_egress_rule" "bastion_all_out" {
   ip_protocol       = "-1"
 }
 
+*/
+
+
 resource "aws_vpc_security_group_egress_rule" "private_ec2_all_out" {
   security_group_id = aws_security_group.private_ec2_sg.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -61,6 +70,8 @@ resource "aws_vpc_security_group_egress_rule" "private_ec2_all_out" {
 
 // Bastion EC2
 // Public subnet
+// Same we don't need it anymore, we use the SSM Session Manager now
+/*
 resource "aws_instance" "bastion_ec2" {
   ami                         = data.aws_ami.amazon_linux.id
   instance_type               = var.instance_type
@@ -75,7 +86,7 @@ resource "aws_instance" "bastion_ec2" {
     Project = "day09-secure-workloads"
   }
 }
-
+*/
 // App EC2
 // Private subnet
 

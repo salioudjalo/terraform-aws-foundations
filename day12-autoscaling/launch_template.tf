@@ -14,6 +14,11 @@ resource "aws_launch_template" "ec2_template" {
     file("${path.module}/user_data.sh")
   )
 
+  // so the SSH can be done through SSM Session Manager
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ec2_ssm_instance_profile.name
+  }
+
   tags = {
     Name    = "day12-lt"
     Env     = "dev"
@@ -21,11 +26,3 @@ resource "aws_launch_template" "ec2_template" {
   }
 
 }
-
-# if you need to generate a key_pair
-/*
-resource "aws_key_pair" "deployer" {
-  key_name   = "deployer-key"
-  public_key = file(var.ssh_public_key_path)
-}
-*/
