@@ -1,12 +1,12 @@
 variable "instance_type" {
-  type    = string
+  type = string
 }
 
 variable "admin_ip" {
-  type    = string
+  type = string
 }
 
 variable "bastion_key_name" {
-  type    = string
+  type = string
 }
 

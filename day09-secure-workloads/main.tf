@@ -78,6 +78,11 @@ resource "aws_instance" "bastion_ec2" {
 
 // App EC2
 // Private subnet
+
+// Remove manual EC2
+// because ASG fully owns compute
+
+/*
 resource "aws_instance" "app_ec2" {
   ami                         = data.aws_ami.amazon_linux.id
   instance_type               = var.instance_type
@@ -92,3 +97,4 @@ resource "aws_instance" "app_ec2" {
     Project = "day09-secure-workloads"
   }
 }
+*/
