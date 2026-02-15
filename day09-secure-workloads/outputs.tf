@@ -4,7 +4,7 @@
 output "app_ec2_id" {
   value = aws_instance.app_ec2.id
 }
-*/
+/
 
 // we don't need bastion host anymore, we prefer to use SSM Session Manager now
 /*
